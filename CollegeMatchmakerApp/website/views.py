@@ -1,14 +1,8 @@
 import datetime
-import os
 import pickle
-from typing import List, Optional
 from flask import Blueprint, redirect, render_template, request, flash, jsonify, session, url_for
-import joblib
 import pandas as pd
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
-from pydantic import BaseModel, Field, ValidationError
-import json
-import numpy as np
 
 
 user_input_dict = {'Associates':3.0, '2-4 Academic Years':4.0, 'Bachelors':5.0, 'Postbaccalaureate':6.0, 'Masters':7.0, 'Post-Masters':8.0, 
