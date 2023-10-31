@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <h1>This is a map</h1>
+<body>
+
+    <div id="tableauContainer"></div>
+
+    <script>
+        // List of colleges (replace this with your dynamic list)
+        var colleges = ['South Mountain Community College', 'Stillman College', 'Alabama State University', 'University of Arkansas Hope-Texarkana', 'North Arkansas College'];
+    
+        // Construct the filter string
+        var filterString = "inst_name=" + colleges.join(',');
+    
+        // Create the Tableau visualization object
+        var viz = new tableau.Viz(document.getElementById('tableauContainer'), 'https://public.tableau.com/views/CollegeMatchmakerMapDashv2/Sheet1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link', {
+            hideTabs: true,
+            hideToolbar: false,
+            filter: filterString
+        });
+    </script>
+
+
+
+        
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    /> -->
+
+
+    {% extends "base.html" %}
+
+
+      {% block content%}
+
+
+    <title>{% block title %}Input{% endblock %}</title>
+  </head>
+<body>
+  
+    <form method="POST">
+      <h3 align="center">College Input Page</h3>
+      <br />
+
+
+      <div class="container-fluid">
+        <div class="row">
+        
+          <div class="col-sm-1 sidenav">
+
+
+
+
+
+      </div>
+
+    
+      <br />
+      <div class="col-sm-10 text-left"> 
+        
+
+
+        <form>
+          <div class="row">
+
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Select your University(Example)</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="selected_option">
+                <option></option>
+                {% for college in all_colleges %}
+                <option value="{{ college }}">{{ college }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+
+          <br />
+
+          <div class="row">
+            <div class="col">
+      
+
+
+
+                <label for="offering_highest_level">Highest Level: </label>
+                <select class="form-control" id="offering_highest_level" name="offering_highest_level">
+                  <option>Associates</option>
+                  <option>2-4 Academic Years</option>
+                  <option>Bachelors</option>
+                  <option>Postbaccalaureate</option>
+                  <option>Masters</option>
+                  <option>Post-Masters</option>
+                  <option>Doctors</option>
+                </select>
+      
+            </div>
+            <div class="col">
+
+
+              <label for="inst_size">School Size: </label>
+              <select class="form-control" id="inst_size" name="inst_size">
+                <option>Under 1000</option>
+                <option>1000–4999</option>
+                <option>5000–9999</option>
+                <option>10000–19999</option>
+                <option>20000 and above</option>
+              </select>
+      
+            </div>     
+             <div class="col">
+              <label for="hbcu">HBCU?: </label>
+              <select class="form-control" id="hbcu" name="hbcu">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="medical_degree">Medical Degree?: </label>
+              <select class="form-control" id="medical_degree" name="medical_degree">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+      
+      </br>
+      </br>
+      
+          <div class="row">
+            <div class="col">
+              <label for="tribal_college">Tribal College?: </label>
+              <select class="form-control" id="tribal_college" name="tribal_college">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="land_grant">Land Grant?: </label>
+              <select class="form-control" id="land_grant" name="land_grant">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>     
+             <div class="col">
+              <label for="inst_affiliation">Institution Affiliation?: </label>
+              <select class="form-control" id="inst_affiliation" name="inst_affiliation">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="oncampus_housing">Oncampus Housing?: </label>
+              <select class="form-control" id="oncampus_housing" name="oncampus_housing">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+      
+      </br>
+      </br>
+      
+          <div class="row">
+            <div class="col">
+              <label for="calendar_system">Calendar System: </label>
+              <select class="form-control" id="calendar_system" name="calendar_system">
+                <option>Yes</option>
+                <option>No</option>
+              </select>      </div>
+            <div class="col">
+              <label for="study_abroad">Study Abroad: </label>
+              <select class="form-control" id="study_abroad" name="study_abroad">
+                <option>Yes</option>
+                <option>No</option>
+              </select>      </div>     
+             <div class="col">
+              <label for="dual_credit">Dual Credit: </label>
+              <select class="form-control" id="dual_credit" name="dual_credit">
+                <option>Yes</option>
+                <option>No</option>
+              </select>      </div>
+            <div class="col">
+              <label for="ap_credit">AP Credit: </label>
+              <select class="form-control" id="ap_credit" name="ap_credit">
+                <option>Yes</option>
+                <option>No</option>
+              </select>      
+            </div>
+          </div>
+      
+      </br>
+      </br>
+      
+          <div class="row">
+            <div class="col">
+              <label for="employment_services">Employment services: </label>
+              <select class="form-control" id="employment_services" name="employment_services">
+                <option>Yes</option>
+                <option>No</option>
+              </select>      </div>
+            <div class="col">
+              <label for="placement_services">Placement Services: </label>
+              <select class="form-control" id="placement_services" name="placement_services">
+                <option>Yes</option>
+                <option>No</option>>
+              </select>      </div>     
+             <div class="col">
+              <label for="oncampus_daycare">Daycare Services: </label>
+              <select class="form-control" id="oncampus_daycare" name="oncampus_daycare">
+                <option>Yes</option>
+                <option>No</option>
+              </select>      </div>
+            <div class="col">
+              <label for="disability_indicator">Disability Indicator: </label>
+              <select class="form-control" id="disability_indicator" name="disability_indicator">
+                 <option>Yes</option>
+                 <option>No</option>
+                </select>      
+              </div>
+          </div>
+          <br />
+
+          <div class="row">
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Match on attributes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Match on school
+            </label>
+          </div>
+          </div>
+          <br />
+          <div class="row"> 
+            <button type="submit" class="btn btn-primary">Match me!</button>
+          </div>
+
+        </form>
+      </div>
+
+      
+      <div class="col-sm-1 sidenav">
+
+      </div>
+      </div>
+      </div>
+    
+
+   </body>
+   {% endblock %}
+    <!-- </html> -->
