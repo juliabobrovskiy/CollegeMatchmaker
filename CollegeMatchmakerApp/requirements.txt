@@ -1,5 +1,4 @@
 datetime
-pickle
 flask
 pandas
 transformers
