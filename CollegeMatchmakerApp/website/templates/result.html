@@ -18,15 +18,37 @@
         <!-- <li> -->
             <!-- <strong>Schools:</strong>   -->
             {% for school in prediction %}
-            <li>
-                {{ school }}
+            
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-1">
+                        <div class="custom-box">
+                            
+             
+            
+                            <strong>{{ school }}</strong>
             </br>
+                
+               Located in: 
+               {{recommended_universities[recommended_universities['inst_name'] == school]['city'].to_string(index=False, dtype=False)}}, 
+               {{recommended_universities[recommended_universities['inst_name'] == school]['state_abbr'].to_string(index=False, dtype=False)}}
+        </br>
+               Click below for more information:
+    </br>
+                             
+               <a href="https://www.openai.com" class="button">Visit <em>{{school}}</em> </a>
 
-            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+                        
             {% endfor %}
         <!-- </li> -->
         {% endfor %}
     </ul>
+
+    
 
 
     <div class='tableauPlaceholder' id='viz1698363034720' style='position: relative'>
