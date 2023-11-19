@@ -127,6 +127,8 @@ def predict():
     cluster_assignments = kmeans_loaded.predict(test_select) ##list or no?new_student_data
 
     colleges = []
+    sizes = []
+
     
     # Find k nearest universities using KNN model for each student
     for idx, cluster in enumerate(cluster_assignments):
@@ -141,10 +143,16 @@ def predict():
         colleges.append(list(recommended_universities.inst_name))
         #need to convert college names into string for map usage
         string_of_colleges = ','.join(colleges[0])
-        print(string_of_colleges)
+        print(recommended_universities)
+
+    sizes.append([recommended_universities.inst_name, recommended_universities.inst_size])
+    print(sizes)
 
 
-    return render_template('result.html', predictions = colleges, test_select=test_select, string_of_colleges=string_of_colleges)
+    
+    
+    
+    return render_template('result.html', predictions = colleges, test_select=test_select, string_of_colleges=string_of_colleges, recommended_universities=recommended_universities)
 
 
 
