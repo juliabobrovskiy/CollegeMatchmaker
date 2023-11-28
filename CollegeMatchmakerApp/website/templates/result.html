@@ -30,13 +30,14 @@
             </br>
                 
                Located in: 
-               {{recommended_universities[recommended_universities['inst_name'] == school]['city'].to_string(index=False, dtype=False)}}, 
+               {{recommended_universities[recommended_universities['inst_name'] == school]['city_x'].to_string(index=False, dtype=False)}}, 
                {{recommended_universities[recommended_universities['inst_name'] == school]['state_abbr'].to_string(index=False, dtype=False)}}
         </br>
                Click below for more information:
     </br>
                              
-               <a href="https://www.openai.com" class="button">Visit <em>{{school}}</em> </a>
+
+               <a href= "https://{{recommended_universities[recommended_universities['inst_name'] == school]['website'].to_string(index=False, dtype=False)}}" class="button">Visit <em>{{school}}</em> </a>
 
                         </div>
                     </div>
@@ -51,18 +52,20 @@
     
 
 
-    <div class='tableauPlaceholder' id='viz1698363034720' style='position: relative'>
+    <div class='tableauPlaceholder' id='viz1701109440930' style='position: relative'>
         <noscript>
         <a href='#'>
-            <img alt='Map of Schools ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CollegeMatchmakerMapDashv2&#47;Sheet1&#47;1_rss.png' style='border: none' />
+            <img alt='Sheet 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;Map-with-cards&#47;Sheet1&#47;1_rss.png' style='border: none' />
         </a>
     </noscript>
-        <object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> 
+        <object class='tableauViz'  style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
             <param name='site_root' value='' />
-            <param name='name' value='CollegeMatchmakerMapDashv2&#47;Sheet1' />
+            <param name='name' value='Map-with-cards&#47;Sheet1' />
             <param name='tabs' value='no' />
             <param name='toolbar' value='yes' />
-            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CollegeMatchmakerMapDashv2&#47;Sheet1&#47;1.png' /> 
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;Map-with-cards&#47;Sheet1&#47;1.png' /> 
             <param name='animate_transition' value='yes' />
             <param name='display_static_image' value='yes' />
             <param name='display_spinner' value='yes' />
@@ -70,12 +73,12 @@
             <param name='display_count' value='yes' />
             <param name='language' value='en-US' />
             <!-- {{ string_of_colleges }} -->
-            <param name='filter' value='inst_name={{ string_of_colleges }}' />
+            <param name='filter' value='inst_name={{ string_of_colleges.upper() }}' />
             <!-- <param name='filter' value='inst_name=South Mountain Community College,Stillman College,Alabama State University,University of Arkansas Hope-Texarkana,North Arkansas College' /> -->
         </object>
     </div>                
     <script type='text/javascript'>                    
-    var divElement = document.getElementById('viz1698363034720');                    
+    var divElement = document.getElementById('viz1701109440930');                    
     var vizElement = divElement.getElementsByTagName('object')[0];                    
     vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    
     var scriptElement = document.createElement('script');                    
