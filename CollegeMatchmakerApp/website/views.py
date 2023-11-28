@@ -16,7 +16,8 @@ with open('kmeans_knn_model.pkl', 'rb') as file:
 
 # Load clustered data
 # data = pd.read_csv('kmeans_clustered_data.csv')
-data = pd.read_csv('merged_clustering.csv')
+# data = pd.read_csv('merged_clustering.csv')
+data = pd.read_csv('merged_df_cleaned.csv')
 list_of_colleges = data['inst_name'].values.tolist()
 
 
@@ -28,7 +29,7 @@ def get_attributes_from_school(identifier):
     filtered_df = data[data['inst_name'] == identifier]
 
     # Extract columns 2 to 5
-    result_df = filtered_df[['offering_highest_level','inst_size','hbcu','medical_degree','tribal_college','land_grant',
+    result_df = filtered_df[['offering_highest_level','inst_size_x','hbcu','medical_degree','tribal_college','land_grant',
                             'inst_affiliation','oncampus_housing','calendar_system','study_abroad','dual_credit','ap_credit',
                             'employment_services','placement_services','oncampus_daycare','disability_indicator']].values.tolist()
     return result_df
@@ -145,7 +146,7 @@ def predict():
         string_of_colleges = ','.join(colleges[0])
         print(recommended_universities)
 
-    sizes.append([recommended_universities.inst_name, recommended_universities.inst_size])
+    sizes.append([recommended_universities.inst_name, recommended_universities.inst_size_x])
     print(sizes)
 
 
