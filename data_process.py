@@ -66,6 +66,9 @@ admissions_stats_data = admissions_stats_df[admissions_stats_features]
 
 url = f'https://educationdata.urban.org/api/v1/college-university/ipeds/academic-year-tuition/{YEAR}/'
 tuition_df = data_to_pandas(url)
+url = f'https://educationdata.urban.org/api/v1/college-university/ipeds/academic-year-tuition/{YEAR}/?page=2'
+tuition_df2 = data_to_pandas(url)
+
 tuition_features = [
     "unitid",
     "year",
@@ -74,7 +77,14 @@ tuition_features = [
     "tuition_fees_ft",
 ]
 tuition_data = tuition_df[tuition_features]
+tuition_data2 = tuition_df2[tuition_features]
 
+# concat
+tuition_data = pd.concat([tuition_data, tuition_data2], ignore_index=True)
+
+# groupby 'unitid' and take the mean
+tuition_data = tuition_data.groupby('unitid').mean()
+tuition_data.reset_index(inplace=True)
 
 
 url = f'https://educationdata.urban.org/api/v1/college-university/ipeds/academic-year-room-board-other/{YEAR}/'

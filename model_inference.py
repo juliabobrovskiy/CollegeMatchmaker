@@ -19,13 +19,11 @@ cluster_assignments = kmeans_loaded.predict(new_student_data)
 
 # Find k nearest universities using KNN model for each student
 for idx, cluster in enumerate(cluster_assignments):
-    knn_model, original_indices = knn_models_loaded[cluster]
-    distances, relative_indices = knn_model.kneighbors([new_student_data[idx]])
+    knn_model, original_indices, unitids = knn_models_loaded[cluster]
+    distances, indices = knn_model.kneighbors([new_student_data[idx]])
 
-    # relative indices --> original indices
-    recommended_indices = [original_indices[i] for i in relative_indices[0]]
+    recommended_indices = unitids.iloc[indices[0]].values
 
-    recommended_universities = data.iloc[recommended_indices]
     print(f"Recommendations for student {idx + 1}:\n")
-    print(recommended_universities)
+    print(recommended_indices)
     print("\n" + "-" * 50 + "\n")
