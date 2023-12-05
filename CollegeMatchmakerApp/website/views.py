@@ -19,7 +19,8 @@ with open('kmeans_knn_model.pkl', 'rb') as file:
 # data = pd.read_csv('merged_clustering.csv')
 data = pd.read_csv('merged_df_cleaned.csv')
 list_of_colleges = data['inst_name'].values.tolist()
-
+list_of_colleges = list(set(list_of_colleges))
+list_of_colleges = sorted(list_of_colleges)
 
 
 
@@ -128,30 +129,26 @@ def predict():
     cluster_assignments = kmeans_loaded.predict(test_select) ##list or no?new_student_data
 
     colleges = []
-    sizes = []
-
+  
     
     # Find k nearest universities using KNN model for each student
     for idx, cluster in enumerate(cluster_assignments):
-        knn_model, original_indices = knn_models_loaded[cluster]
-        distances, relative_indices = knn_model.kneighbors([test_select[idx]])#new_student_data
 
-        # relative indices --> original indices
-        recommended_indices = [original_indices[i] for i in relative_indices[0]]
+        knn_model, original_indices, unitids = knn_models_loaded[cluster]
+        distances, indices = knn_model.kneighbors([test_select[idx]])
 
-        recommended_universities = data.iloc[recommended_indices]
+        recommended_indices = unitids.iloc[indices[0]].values
 
-        colleges.append(list(recommended_universities.inst_name))
-        #need to convert college names into string for map usage
-        string_of_colleges = ','.join(colleges[0])
-        print(recommended_universities)
+        for index in recommended_indices:
 
-    sizes.append([recommended_universities.inst_name, recommended_universities.inst_size_x])
-    print(sizes)
+            recommended_university = data[data['unitid']==index]
+            colleges.append(list(recommended_university.inst_name))
 
+    colleges = [college[0] for college in colleges]
+    string_of_colleges = ','.join(colleges)
 
-    
-    
+    recommended_universities = data[data['inst_name'].isin(colleges)].copy()
+    print(recommended_universities)
     
     return render_template('result.html', predictions = colleges, test_select=test_select, string_of_colleges=string_of_colleges, recommended_universities=recommended_universities)
 
