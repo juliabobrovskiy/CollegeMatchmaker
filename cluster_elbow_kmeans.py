@@ -16,7 +16,7 @@ data_clustering_scaled = scaler.fit_transform(data_clustering)
 
 # Elbow method
 inertia = []
-K = range(1, 50)  # Up to 14 clusters
+K = range(1, 25)  # Up to 14 clusters
 for k in K:
     kmeans = KMeans(n_clusters=k, init='k-means++', n_init=10, max_iter=300, random_state=42)
     kmeans.fit(data_clustering_scaled)

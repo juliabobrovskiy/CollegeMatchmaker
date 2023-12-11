@@ -281,4 +281,8 @@ merged_data.loc[merged_data['placement_services'] < 0, 'placement_services'] = 0
 
 # profile = ProfileReport(data, title="Modeling Features Report")
 # profile.to_file('Modeling_feat_processed.html')
+
+# make dataframe columns as int
+merged_data = merged_data.astype(int)
+
 merged_data.to_csv('processed_data_clustering.csv', index=False)

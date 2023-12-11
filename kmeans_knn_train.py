@@ -15,7 +15,7 @@ scaler = MinMaxScaler()
 data_clustering_scaled = scaler.fit_transform(data_clustering)
 
 # K-Means clustering
-kmeans = KMeans(n_clusters=10, random_state=42)
+kmeans = KMeans(n_clusters=14, random_state=42)
 data['cluster'] = kmeans.fit_predict(data_clustering_scaled)
 
 # Train KNN model for each cluster
