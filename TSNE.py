@@ -1,22 +1,27 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
+from sklearn.preprocessing import MinMaxScaler
 
+clustered_data = ['kmeans_clustered_data.csv']
 
-clustered_data = ['kmeans_clustered_data.csv', 'kmodes_clustered_data.csv']
+scaler = MinMaxScaler()
 
 for data_file in clustered_data:
     # Load clustered data
     data = pd.read_csv(data_file)
 
-    # rewmove 'unitid', 'year', and 'cluster'
-    data_tsne = data.drop(columns=['unitid', 'year', 'cluster'])
+    # Remove 'unitid', 'year', and 'cluster'
+    data_tsne = data.drop(columns=['unitid', 'cluster'])
+
+    # Standardize the data
+    data_tsne_scaled = scaler.fit_transform(data_tsne)
 
     # t-SNE
     tsne = TSNE(n_components=2, perplexity=30, n_iter=300, random_state=42)
-    tsne_data = tsne.fit_transform(data_tsne)
+    tsne_data = tsne.fit_transform(data_tsne_scaled)
 
-    # dataframe tsne
+    # DataFrame for t-SNE
     tsne_df = pd.DataFrame(data=tsne_data, columns=['Dimension 1', 'Dimension 2'])
     tsne_df['Cluster'] = data['cluster']
 

@@ -1,21 +1,27 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import MinMaxScaler
 
-clustered_data = ['kmeans_clustered_data.csv', 'kmodes_clustered_data.csv']
+clustered_data = ['kmeans_clustered_data.csv']
+
+scaler = MinMaxScaler()
 
 for data_file in clustered_data:
     # Load clustered data
     data = pd.read_csv(data_file)
 
-    # remove 'unitid', 'year', and 'cluster'
-    data_pca = data.drop(columns=['unitid', 'year', 'cluster'])
+    # Remove 'unitid', 'year', and 'cluster'
+    data_pca = data.drop(columns=['unitid', 'cluster'])
+
+    # Standardize the data
+    data_pca_scaled = scaler.fit_transform(data_pca)
 
     # PCA
     pca = PCA(n_components=2)
-    pca_data = pca.fit_transform(data_pca)
+    pca_data = pca.fit_transform(data_pca_scaled)
 
-    # DataFrame pca
+    # DataFrame for PCA
     pca_df = pd.DataFrame(data=pca_data, columns=['Component 1', 'Component 2'])
     pca_df['Cluster'] = data['cluster']
 
