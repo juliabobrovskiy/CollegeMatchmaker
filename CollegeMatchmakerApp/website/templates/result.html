@@ -117,7 +117,33 @@
     vizElement.parentNode.insertBefore(scriptElement, vizElement);                
     </script> -->
 
+<!-- Your HTML content -->
 
+
+<script>
+    // Get the current location and log it to the console
+    var currentLocation = window.location.href;
+
+    // Log the current location within your project's folder structure
+    console.log("Current Location within Project:", getCurrentRelativePath(currentLocation));
+
+    // Function to get the relative path within the project
+    function getCurrentRelativePath(url) {
+        var rootPath = window.location.origin; // Get the root path of the project
+        var relativePath = url.replace(rootPath, ""); // Get the relative path
+
+        return relativePath;
+    }
+</script>
+<br/>
+<h2>Check this out!</h2>
+<p>This chart shows a deeper look into what features played a role into selecting these particular schools, and how much.</p>
+
+<br/>
+    <!-- Relative path to the image -->
+    <img src="{{ url_for('static', filename=unitid) }}" alt="My Image" width="80%" height="600">
+
+    
 
 </body>
 
