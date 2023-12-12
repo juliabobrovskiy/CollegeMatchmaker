@@ -31,6 +31,5 @@ plt.title('Elbow Method For Optimal Number of Clusters')
 plt.grid(True)
 
 # Make plot directory and save the plot
-os.makedirs('plots', exist_ok=True)
-plt.savefig('plots/Elbow Method For Optimal Number of Clusters.png')
+plt.savefig('plot/Elbow Method For Optimal Number of Clusters.png')
 plt.show()

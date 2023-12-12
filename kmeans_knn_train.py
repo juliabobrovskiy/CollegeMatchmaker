@@ -15,12 +15,13 @@ scaler = MinMaxScaler()
 data_clustering_scaled = scaler.fit_transform(data_clustering)
 
 # K-Means clustering
-kmeans = KMeans(n_clusters=14, random_state=42)
+n_clusters = 10
+kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 data['cluster'] = kmeans.fit_predict(data_clustering_scaled)
 
 # Train KNN model for each cluster
 knn_models = {}
-for cluster in range(10):
+for cluster in range(n_clusters):
     # Filter data for the current cluster
     cluster_data = data[data['cluster'] == cluster]
 

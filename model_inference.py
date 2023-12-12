@@ -12,6 +12,8 @@ with open('scaler.pkl', 'rb') as file:
 
 # Load clustered data
 data = pd.read_csv('kmeans_clustered_data.csv')
+# load unitid mapping (to get names)
+unitid_map = pd.read_csv('unitid_mapping.csv')
 
 # New students' data
 new_student_data = [
@@ -35,7 +37,12 @@ for idx, cluster in enumerate(cluster_assignments):
     distances, indices = knn_model.kneighbors([new_student_data_scaled[idx]])
 
     recommended_indices = unitids.iloc[indices[0][1:]].values
+    # Map these unit IDs to institution names
+    recommended_institutions = unitid_map[unitid_map['unitid'].isin(recommended_indices)]['inst_name'].values
+    clusters = data[data['unitid'].isin(recommended_indices)]['cluster'].values
 
     print(f"Recommendations for student {idx + 1}:\n")
-    print(recommended_indices)
+    print('Recommended unitids:', recommended_indices)
+    print('Recommended inst_name:', recommended_institutions)
+    print('Clusters', clusters)
     print("\n" + "-" * 50 + "\n")
